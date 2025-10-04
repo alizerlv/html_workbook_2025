@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture 4 – Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Web Development – Lecture 4</h1>
+    <p class="subtitle">HTML, CSS, and Geolocation Practice</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Registration Form</h2>
+      <form>
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="FirstName" required>
+
+        <label for="fullname">First & Last Name:</label>
+        <input type="text" id="fullname" name="LastName" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="DateOfBirth" required>
+
+        <label>Gender:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="Gender" value="Male"> Male</label>
+          <label><input type="radio" name="Gender" value="Female"> Female</label>
+        </div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" required>
+
+        <label for="confirm">Confirm Password:</label>
+        <input type="password" id="confirm" name="ConfirmPassword" required>
+
+        <div class="buttons">
+          <input type="submit" value="Submit">
+          <input type="reset" value="Reset">
+        </div>
+      </form>
+    </section>
+
+    <section class="map-section">
+      <h2>Your Location</h2>
+      <iframe id="map" width="350" height="250" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <section class="video-section">
+      <h2>Video Lesson</h2>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/HD13eq_Pmp8"
+        title="YouTube video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 TSI University – Web & App Development Technologies</p>
+  </footer>
+
+  <script>
+    // Автоматическое определение локации
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById('map').src =
+          `https://www.google.com/maps?q=${lat},${lon}&z=15&output=embed`;
+      }, function() {
+        document.getElementById('map').src =
+          "https://www.google.com/maps?q=Riga&output=embed";
+      });
+    } else {
+      document.getElementById('map').src =
+        "https://www.google.com/maps?q=Riga&output=embed";
+    }
+  </script>
+
+</body>
+</html>
